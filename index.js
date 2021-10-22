@@ -1,5 +1,5 @@
 const express = require('express')
-const first = require('./routes/first')
+const {first, desc} = require('./routes/first')
 const cors = require('cors')
 // express
 const app = express()
@@ -9,6 +9,8 @@ app.use(cors())
 
 //Routes
 app.use('/front', first)
+app.use('/description', desc)
+
 
 app.listen(5000, ()=>{
     console.log("up and running...")
