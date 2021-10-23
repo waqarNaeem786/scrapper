@@ -1,11 +1,11 @@
-const axios = require('axios')
 const cheerio = require('cheerio')
+const axios = require('axios')
 
-const url = "https://www.2embed.ru/library"
-let allitems = []
 
-//front page
-axios.get(url)
+let searchItems = []
+function search (name){
+    let url  = `https://www.2embed.ru/library/search?keyword=${name}`
+    axios.get(url)
     .then((response) => {
         let $ = cheerio.load(response.data);
     
@@ -18,17 +18,18 @@ axios.get(url)
             title: `${title}`,
             link: `${links}`,
             img: `${img}`
-        }
-        allitems.push(data)
-        
+          }
+          searchItems.push(data)
+
       })
     }).catch(function (e) {
     console.log(e);
 });
 
+}
 
-// allitems.forEach((data)=>{
-//   console.log(data.link)
-// })
+module.exports = {
+    searchItems,
+    search
 
-module.exports = allitems
+}

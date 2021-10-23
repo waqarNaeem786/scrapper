@@ -6,7 +6,7 @@ description:"",
 image:""
 }
 const viewer = (link)=>{
-    let url = `https://www.2embed.ru/library${link}`
+    let url = `https://www.2embed.ru${link}`
     axios.get(url)
     .then((response) => {
         let $ = cheerio.load(response.data);

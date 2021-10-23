@@ -1,5 +1,5 @@
 const express = require('express')
-const {first, desc} = require('./routes/first')
+const {first, desc, searchRoute} = require('./routes/routes')
 const cors = require('cors')
 // express
 const app = express()
@@ -10,6 +10,8 @@ app.use(cors())
 //Routes
 app.use('/front', first)
 app.use('/description', desc)
+app.use('/search', searchRoute)
+
 
 
 app.listen(5000, ()=>{
