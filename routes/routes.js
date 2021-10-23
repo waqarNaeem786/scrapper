@@ -20,28 +20,21 @@ first.route('/').all((req,res,next) => {
 
 
 //Description of movie/serial
-desc.route('/').all((req,res,next)=>{
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/json');
-    next();
-}).post((req,res)=>{
-    viewer(req.body.link)
-    res.send(data)
-
-
+desc.route('/:lib/:movie/:id')
+.get(async (req,res)=>{
+    viewer("/"+req.params.lib+"/"+req.params.movie+"/"+req.params.id)
+    res.json(data)
 })
 
 //search Route
-searchRoute.route('/').all((req,res,next)=>{
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/json');
-    next();
-}).post((req,res)=>{
-    search(req.body.name)
+searchRoute.route('/:name')
+.get((req,res)=>{
+    // console.log(req.params.name)
+    search(req.params.name)
     res.send(searchItems)
-
-
 })
+
+
 module.exports = {
     first,
     desc,

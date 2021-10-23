@@ -6,6 +6,7 @@ description:"",
 image:""
 }
 const viewer = (link)=>{
+  // console.log(link)
     let url = `https://www.2embed.ru${link}`
     axios.get(url)
     .then((response) => {
@@ -17,14 +18,15 @@ const viewer = (link)=>{
         const desc = $(e).find(".description").text()
         data.image = img
         data.title = title
-        data.description = desc  
+        data.description = desc
+        // console.log(data)
+
       })
     }).catch(function (e) {
     console.log(e);
 });
 
 }
-
 
 
 module.exports = {
