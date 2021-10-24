@@ -1,6 +1,6 @@
 const { next } = require('cheerio/lib/api/traversing')
 const express = require('express')
-const firstpage = require('../scrapper/frontPage')
+const  firstpage  = require('../scrapper/frontPage')
 const { viewer, data } = require('../scrapper/videoPage')
 const { search, searchItems } = require('../scrapper/search')
 

@@ -20,20 +20,31 @@ export default function Front() {
                    }) 
             let res = await fdata.json()
             setData(res)
+            // let list = 
+            // console.log(list)
         }
         fetcher()        
     }, [])
-  console.log(data)
-
+    let movie = data.filter(e => e.id.match(/\Dlibrary\Dmovie\D\d+/g))
+    console.log(movie)
+    let tv = data.filter(e => e.id.match(/\Dlibrary\Dtv\D\d+/g))
+    console.log(tv)
+ 
     return (
         <div>
-            <h1>Front</h1>
-            {data.map(e=>(
-                <div>
-                <h1>{e.title}</h1>
-            
+            <h1>Movies</h1>
+            {movie.map(e=>(
+                <div key={e.id.replace(/[^0-9]/g, "")}>
+                <img src={e.img} alt="" />
+                <h1>{e.title}</h1>   
                 </div>
-
+            ))}
+            <h1>Tv</h1>
+            {tv.map(e=>(
+                <div key={e.id.replace(/[^0-9]/g, "")}>
+                <img src={e.img} alt="" />
+                <h1>{e.title}</h1>   
+                </div>
             ))}
         </div>
     )
