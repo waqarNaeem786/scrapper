@@ -11,7 +11,7 @@ function App() {
       <Router>
         <Switch>
             <Route exact path='/' component={Front}/>
-            <Route path='/viewer' component={Viewer}/>
+            <Route path='/viewer/:id' component={Viewer}/>
         </Switch>
 
       </Router>
