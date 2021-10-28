@@ -20,9 +20,9 @@ first.route('/').all((req,res,next) => {
 
 
 //Description of movie/serial
-desc.route('/:lib/:movie/:id')
-.get(async (req,res)=>{
-    viewer("/"+req.params.lib+"/"+req.params.movie+"/"+req.params.id)
+desc.route('/')
+.post((req,res)=>{
+    viewer(req.body.link)
     res.json(data)
 })
 
