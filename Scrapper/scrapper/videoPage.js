@@ -4,7 +4,7 @@ cheerio = require('cheerio')
 let data = {title:"",
 description:"",
 image:"",
-season: "",
+season: [],
 episode: ""
 }
 const viewer = (link)=>{
@@ -24,15 +24,28 @@ const viewer = (link)=>{
       })
 
      let se = $('.season-item').text()
-     data.season = se
-     let ep = $('.episode-item').text()
-     let episode = []
-     episode.push(ep)
-     data.episode = episode
      
-    //  .replace(/\s/g, '')
+     data.season.push(se)
+     let ep = $('.episode-item').text().replace(/\s/g, '')
+     
+      //finding appropriate position of episode to extract 
+      //the data between two positions of episode
+     var regex = /Episode1:/gi, result, indices = [];
+     while ( (result = regex.exec(ep)) ) {
+         indices.push(result.index);
+         // console.log(indices)    
+     }
+          
+      let arr = []
+      for(let i = 0; i < indices.length; i++){
+          // console.log(indices[i],indices[i+1])
+        arr.push(ep.slice(indices[i],indices[i+1])) 
+      }
 
-      //replace(/\s/g, '')
+     //assigning ep to object
+     data.episode = arr
+   
+    //replace(/\s/g, '')
       console.log(data)
     }).catch(function (e) {
     console.log(e);
@@ -40,7 +53,7 @@ const viewer = (link)=>{
 
 }
 
-// viewer("/library/tv/75219")
+viewer("/library/tv/75219")
 module.exports = {
     viewer,
     data
