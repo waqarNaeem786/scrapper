@@ -2,17 +2,29 @@ let episode  = "Episode1:PilotEpisode2:LetGoEpisode3:NextofKinEpisode4:WorstDayE
 var regex = /Episode1:/gi, result, indices = [];
 while ( (result = regex.exec(episode)) ) {
     indices.push(result.index);
-    // console.log(indices)
-    
 }
+
+
 
 let arr = []
 for(let i = 0; i < indices.length; i++){
     // console.log(indices[i],indices[i+1])
-   arr.push(episode.slice(indices[i],indices[i+1])) 
+   arr.push(episode.slice(indices[i],indices[i+1]))  
 }
 
+let arr2 = []
+arr.map(e=>{
+    let  epis = e.match(/Episode\d+/gi)
+    arr2.push(epis)
+})
+// console.log(arr2)
 
+
+let seas = "Season 1Season 2Season 3Season 4Season 5"
+let seasons = seas.match(/Season \d+/gi)
+var sande = seasons.reduce((acc, value, i) => (acc[value] = arr2[i], acc), {});
+
+console.log(data);
 
 
 
